@@ -1,2 +1,1 @@
-# Single Page Web Applications with AngularJS
-## Modules Coding Assignments
+# Single Page Web Applications with AngularJS Coding Assignments
