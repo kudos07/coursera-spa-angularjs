@@ -40,8 +40,8 @@
       }
     };
 
-    function cleanArray (arr) {
-      var arr = arr.split(',');
+    function cleanArray (s) {
+      var arr = s.split(',');
       var newArr = [];
 
       for(var i = 0; i<arr.length; i++) {
