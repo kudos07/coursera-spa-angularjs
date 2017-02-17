@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" ng-app="NarrowItDownApp">
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+  </head>
+<body>
+   <div class="container">
+       <div class="row">
+           <div class="col-sm-12">
+               <div class="well" ng-controller="NarrowItDownController as nid">
+                   <h1>Narrow Down Your Chinese Menu Choice</h1>
+                   <form class="form-inline">
+                       <div class="form-group">
+                           <input type="text" placeholder="search term" class="form-control">
+                       </div>
+                       <button type="submit" class="btn btn-primary">Narrow It Down For Me!</button>
+                   </form>
+               </div>
+           </div>
+           <div class="col-sm-12">
+               <div class="col-sm-8">
+                   <!-- found-items should be implemented as a component -->
+                   <found-items></found-items>
+                   <div class="table-responsive">
+                       <table class="table table-bordered">
+                           <thead>
+                               <tr>
+                                   <th>#</th>
+                                   <th>short_name</th>
+                                   <th>name</th>
+                                   <th>description</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                                   <td></td>
+                               </tr>
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+           </div>
+       </div>
+  </div>
+
+   <script type="text/javascript" src="https://code.angularjs.org/1.6.1/angular.min.js"></script>
+   <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
