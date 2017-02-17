@@ -8,43 +8,20 @@
   </head>
 <body>
    <div class="container">
-       <div class="row">
+       <div class="row" ng-controller="NarrowItDownController as nid">
            <div class="col-sm-12">
-               <div class="well" ng-controller="NarrowItDownController as nid">
+               <div class="well">
                    <h1>Narrow Down Your Chinese Menu Choice</h1>
                    <form class="form-inline">
                        <div class="form-group">
-                           <input type="text" placeholder="search term" class="form-control">
+                           <input type="text" ng-model="nid.searchTerm" placeholder="search term" class="form-control">
                        </div>
-                       <button type="submit" class="btn btn-primary">Narrow It Down For Me!</button>
+                       <button type="submit" ng-click="nid.showListMenu()" class="btn btn-primary">Narrow It Down For Me!</button>
                    </form>
                </div>
-           </div>
-           <div class="col-sm-12">
-               <div class="col-sm-8">
-                   <!-- found-items should be implemented as a component -->
-                   <found-items></found-items>
-                   <div class="table-responsive">
-                       <table class="table table-bordered">
-                           <thead>
-                               <tr>
-                                   <th>#</th>
-                                   <th>short_name</th>
-                                   <th>name</th>
-                                   <th>description</th>
-                               </tr>
-                           </thead>
-                           <tbody>
-                               <tr>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                                   <td></td>
-                               </tr>
-                           </tbody>
-                       </table>
-                   </div>
-               </div>
+
+               <!-- found-items should be implemented as a component -->
+               <found-items on-remove="nid.removeItem(index)" found-items="nid.found"></found-items>
            </div>
        </div>
   </div>
