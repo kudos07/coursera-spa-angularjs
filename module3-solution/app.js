@@ -17,51 +17,44 @@
     .service('MenuSearchService', MenuSearchService)
     .directive('foundItems', FoundItems);
 
-
   NarrowItDownController.$inject = ['$scope', 'MenuSearchService'];
   MenuSearchService.$inject = ['$http'];
 
-
-  // Declare and create a NarrowItDownController (with controller as syntax) that will wrap your search textbox and button as well as the list of found items.
   function NarrowItDownController ($scope, MenuSearchService) {
-    var local = this;
+    var narrowItDown = this;
 
     // In the NarrowItDownController, simply remove that item from the found array.
-    local.removeItem = function (index) {
-      // You can do that using the Array's splice() method. For example, to remove an item with the index of 3 from the found array, you would call found.splice(3, 1);.
-      found.splice(index, 1);
-    }
+    narrowItDown.removeItem = function (index) {
+      narrowItDown.found.splice(index, 1);
+    };
 
-    // The controller should call the getMatchedMenuItems method when appropriate and store the result in a property called "found" attached to the controller instance.
-    local.showListMenu = function () {
-      var promise = MenuSearchService.getMatchedMenuItems(local.searchTerm);
+    // The controller should call the getMatchedMenuItems method when appropriate
+    // Store the result in a property called "found" attached to the controller instance.
+    narrowItDown.showListMenu = function () {
+      var promise = MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm);
     
       promise
         .then(function (result) {
-          local.found = result.data.menu_items;
+          narrowItDown.found = result.data.menu_items;
         })
         .catch(function (error) {
           console.log(error)
         })
     }
-
-
   }
 
-  // Declare and create MenuSearchService.
   function MenuSearchService($http) {
     var service = this;
 
-    // The service should have the following method: getMatchedMenuItems(searchTerm).
     service.getMatchedMenuItems = function (searchTerm) {
       var response = $http({
         method: 'GET',
         url: 'https://davids-restaurant.herokuapp.com/menu_items.json'
       });
 
-      // Once it gets all the menu items, it should loop through them to pick out the ones whose description matches the searchTerm.
+      // Once it gets all the menu items, it should loop through them
+      // pick out the ones whose description matches the searchTerm.
 
-      // Once a list of found items is compiled, it should return that list (wrapped in a promise).
       return response;
     };
 
@@ -74,9 +67,6 @@
       restrict: 'E',
       templateUrl: 'foundItems.html',
       replace: true,
-
-      // The list should be displayed using this directive which takes the found array of items specified on it as an attribute (think one-way binding with '<').
-      // To implement the functionality of the "Don't want this one!" button, the directive should also provide an on-remove attribute that will use function reference binding to invoke the parent controller removal an item from the found array based on an index into the found array.
       scope: {
         foundItems: '<',
         onRemove: '&'
