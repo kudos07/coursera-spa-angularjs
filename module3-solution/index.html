@@ -20,8 +20,8 @@
                    </form>
                </div>
 
-               <!-- found-items should be implemented as a component -->
-               <found-items on-remove="nid.removeItem(index)" found-items="nid.found"></found-items>
+               <p ng-if="nid.error">asd</p>
+               <found-items ng-if="!nid.error" on-remove="nid.removeMenuItem(index)" found-items="nid.found"></found-items>
            </div>
        </div>
   </div>

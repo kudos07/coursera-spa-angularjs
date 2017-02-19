@@ -1,13 +1,3 @@
-/*
-* Once the user enters something into the textbox and clicks the button, your app will reach out to the server and retrieve the list of menu items for the entire menu.
-*
-* Once retrieved, your task is to loop through all the items and, for each item, do a simple check if the string being searched for by the user appears anywhere in the description of the item.
-* If it does, that item gets placed in a special found array. If it doesn't, you simply move on to the next item.
-* You should also provide a "Don't want this one!" button next to each item in the list to give the user the ability to remove an item from that list.
-*
-* If nothing is found as a result of the search OR if the user leaves the textbox empty and clicks the "Narrow It Down For Me!" button, you should simply display the message "Nothing found".
-*
-*/
 (function(){
   'use strict';
 
@@ -22,9 +12,10 @@
 
   function NarrowItDownController ($scope, MenuSearchService) {
     var narrowItDown = this;
+    narrowItDown.error = false;
 
     // In the NarrowItDownController, simply remove that item from the found array.
-    narrowItDown.removeItem = function (index) {
+    narrowItDown.removeMenuItem = function (index) {
       narrowItDown.found.splice(index, 1);
     };
 
@@ -33,29 +24,43 @@
     narrowItDown.showListMenu = function () {
       var promise = MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm);
     
-      promise
-        .then(function (result) {
-          narrowItDown.found = result.data.menu_items;
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+      promise.then(function (response) {
+        narrowItDown.found = response;
+        if(narrowItDown.found.length < 1) {
+          narrowItDown.error = true;
+        }
+
+      }).catch(function (error) {
+        console.log('Errore: ',error);
+      })
     }
   }
 
   function MenuSearchService($http) {
     var service = this;
 
+    // quando chiamo questo metodo dal mio controller:
+    // devo eseguire una chiamata http che mi ritorni menu_items.json
+    // devo filtrare la lista in base alla chiave di ricerca "searchTerm" e controllare se appare da qualche parte nella description
+    // Se non trovo nulla o se l'input viene lasciato vuoto deve uscire il messaggio "Nothing found"
     service.getMatchedMenuItems = function (searchTerm) {
-      var response = $http({
+      return $http({
         method: 'GET',
         url: 'https://davids-restaurant.herokuapp.com/menu_items.json'
+      }).then(function (result) {
+
+        var menu_items = result.data.menu_items;
+        var foundItems = [];
+
+        for(var i=0; i < menu_items.length; i++){
+          if (menu_items[i].description.indexOf(searchTerm) > 0) {
+            foundItems.push(menu_items[i]);
+          }
+        }
+
+        // return processed items
+        return foundItems;
       });
-
-      // Once it gets all the menu items, it should loop through them
-      // pick out the ones whose description matches the searchTerm.
-
-      return response;
     };
 
   }
