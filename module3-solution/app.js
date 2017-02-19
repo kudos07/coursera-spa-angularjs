@@ -13,6 +13,7 @@
   function NarrowItDownController ($scope, MenuSearchService) {
     var narrowItDown = this;
     narrowItDown.error = false;
+    narrowItDown.loader = false;
 
     // In the NarrowItDownController, simply remove that item from the found array.
     narrowItDown.removeMenuItem = function (index) {
@@ -23,13 +24,14 @@
     // Store the result in a property called "found" attached to the controller instance.
     narrowItDown.showListMenu = function () {
       var promise = MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm);
-    
+      narrowItDown.loader = true;
+
       promise.then(function (response) {
         narrowItDown.found = response;
+        narrowItDown.loader = false; //loading
         if(narrowItDown.found.length < 1) {
-          narrowItDown.error = true;
+          narrowItDown.error = true; // no found error
         }
-
       }).catch(function (error) {
         console.log('Errore: ',error);
       })

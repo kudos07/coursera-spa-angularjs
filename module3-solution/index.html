@@ -18,10 +18,11 @@
                        </div>
                        <button type="submit" ng-click="nid.showListMenu()" class="btn btn-primary">Narrow It Down For Me!</button>
                    </form>
-               </div>
 
+               </div>
+               <span class="loader" ng-if="nid.loader"></span>
                <p ng-if="nid.error">asd</p>
-               <found-items ng-if="!nid.error" on-remove="nid.removeMenuItem(index)" found-items="nid.found"></found-items>
+               <found-items on-remove="nid.removeMenuItem(index)" found-items="nid.found"></found-items>
            </div>
        </div>
   </div>
