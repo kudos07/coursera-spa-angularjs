@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="NarrowItDownApp">
+<html lang="en" ng-app="NarrowItDownApp" ng-cloak>
   <head>
     <title>Narrow Down Your Menu Choice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,11 +17,11 @@
                            <input type="text" ng-model="nid.searchTerm" placeholder="search term" class="form-control">
                        </div>
                        <button type="submit" ng-click="nid.showListMenu()" class="btn btn-primary">Narrow It Down For Me!</button>
+                       <span class="loader" ng-if="nid.loader"></span>
                    </form>
-
                </div>
-               <span class="loader" ng-if="nid.loader"></span>
-               <p ng-if="nid.error">asd</p>
+
+               <p ng-if="nid.error">Nothing found</p>
                <found-items on-remove="nid.removeMenuItem(index)" found-items="nid.found"></found-items>
            </div>
        </div>

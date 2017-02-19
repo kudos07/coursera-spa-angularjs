@@ -12,8 +12,8 @@
 
   function NarrowItDownController ($scope, MenuSearchService) {
     var narrowItDown = this;
-    narrowItDown.error = false;
-    narrowItDown.loader = false;
+    narrowItDown.error = false; // loading
+    narrowItDown.loader = false; // error: no found items
 
     // In the NarrowItDownController, simply remove that item from the found array.
     narrowItDown.removeMenuItem = function (index) {
@@ -28,9 +28,9 @@
 
       promise.then(function (response) {
         narrowItDown.found = response;
-        narrowItDown.loader = false; //loading
+        narrowItDown.loader = false;
         if(narrowItDown.found.length < 1) {
-          narrowItDown.error = true; // no found error
+          narrowItDown.error = true;
         }
       }).catch(function (error) {
         console.log('Errore: ',error);
@@ -44,7 +44,6 @@
     // quando chiamo questo metodo dal mio controller:
     // devo eseguire una chiamata http che mi ritorni menu_items.json
     // devo filtrare la lista in base alla chiave di ricerca "searchTerm" e controllare se appare da qualche parte nella description
-    // Se non trovo nulla o se l'input viene lasciato vuoto deve uscire il messaggio "Nothing found"
     service.getMatchedMenuItems = function (searchTerm) {
       return $http({
         method: 'GET',
