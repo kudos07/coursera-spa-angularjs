@@ -34,6 +34,9 @@
         params: {
           categoryShortName: categoryShortName
         }
+      }).then(function(result){
+        console.log(result.data.menu_items)
+        return result.data.menu_items;
       })
 
     }

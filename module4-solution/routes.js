@@ -25,6 +25,18 @@
           }]
         }
       })
+      .state('itemDetail', {
+        url: '/itemDetail/{itemId}',
+        templateUrl: 'menuapp-itemDetail.template.html',
+        controller: 'ItemDetailCtrl as itemDetail',
+        resolve: {
+          item: ['$stateParams', 'MenuDataService', function ($stateParams, MenuDataService) {
+            return MenuDataService.getItemsForCategory($stateParams.itemId).then(function (items){
+              return items[$stateParams.itemId];
+            })
+          }]
+        }
+      })
 
   }
 
