@@ -17,10 +17,10 @@
       })
       .state('categories', {
         url: '/categories',
-        template: '<h1 class="text-center">Elenco delle categorie</h1><categories items="categories.items"></categories>',
+        template: '<h1 class="text-center">Pagina: {{categories.pageTitle}}</h1> <ul><li ng-repeat="cat in categories.categoriesList">{{cat.name}}</li></ul>',
         controller: 'CategoriesCtrl as categories',
         resolve: {
-          items: ['MenuDataService', function (MenuDataService) {
+          categoriesList: ['MenuDataService', function (MenuDataService) {
             return MenuDataService.getAllCategories();
           }]
         }

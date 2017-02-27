@@ -2,17 +2,21 @@
   'use strict';
 
   angular
-    .module('MenuApp')
+    .module('data')
     .controller('CategoriesCtrl', CategoriesCtrl);
 
-  CategoriesCtrl.$inject = ['items']
-  function CategoriesCtrl(items) {
+  CategoriesCtrl.$inject = ['categoriesList']
+  function CategoriesCtrl(categoriesList) {
 
+    // "categories" è la label del controller definito nello state
     var categories = this;
-    categories.items = items;
+    categories.pageTitle = 'Categorie';
 
-    console.log('ctrl', categories.items);
 
+    // categoriesList contiene la promise definita nel resolve dello state
+    // per richiamare la lista di categorie dal servizio menudata.service.js
+    categories.categoriesList = categoriesList;
+    console.log(categories.categoriesList );
   }
 
 

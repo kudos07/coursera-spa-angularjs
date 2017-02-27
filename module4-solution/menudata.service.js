@@ -18,7 +18,7 @@
         method: 'GET',
         url: 'https://davids-restaurant.herokuapp.com/categories.json'
       }).then(function(result){
-        console.log(result.data);
+        return result.data;
       })
     };
 
