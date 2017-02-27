@@ -13,11 +13,11 @@
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'view/home.template.html'
+        templateUrl: 'menuapp-home.template.html'
       })
       .state('categories', {
         url: '/categories',
-        templateUrl: 'view/categories.template.html',
+        templateUrl: 'menuapp-categories.template.html',
         controller: 'CategoriesCtrl as categories',
         resolve: {
           categoriesList: ['MenuDataService', function (MenuDataService) {
