@@ -1,0 +1,15 @@
+<h1 class="text-center">Pagina {{categories.pageTitle}} - elenco completo</h1>
+
+<!-- Breadcrumbs -->
+<ol class="breadcrumb">
+  <li><a href="#!/">Home</a></li>
+  <li class="active">Categories</li>
+</ol>
+
+<!-- lista categorie 
+<ul>
+  <li ng-repeat="cat in categories.categoriesList">{{cat.name}}</li>
+</ul>
+-->
+
+<categoriesList items="categories.categoriesList"></categoriesList>

@@ -13,11 +13,11 @@
     $stateProvider
       .state('home', {
         url: '/',
-        template: '<h1 class="text-center">Welcome to our Restaurant</h1><a ui-sref="categories">Show all categories</a>'
+        templateUrl: 'view/home.template.html'
       })
       .state('categories', {
         url: '/categories',
-        template: '<h1 class="text-center">Pagina: {{categories.pageTitle}}</h1> <ul><li ng-repeat="cat in categories.categoriesList">{{cat.name}}</li></ul>',
+        templateUrl: 'view/categories.template.html',
         controller: 'CategoriesCtrl as categories',
         resolve: {
           categoriesList: ['MenuDataService', function (MenuDataService) {
