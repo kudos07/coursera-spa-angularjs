@@ -11,16 +11,9 @@
     // "itemsList" è la label del controller definito nello state
     var itemsList = this;
     itemsList.pageTitle = 'Elenco prodotti per la categoria:';
-
     itemsList.items = items;
-
     itemsList.catName = $stateParams.categoryId;
 
-    console.log(itemsList.items.length)
-
   }
-
-
-
 
 }());

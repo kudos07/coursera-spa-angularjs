@@ -12,13 +12,9 @@
     var categories = this;
     categories.pageTitle = 'Categorie';
 
-
     // categoriesList contiene la promise definita nel resolve dello state
     // per richiamare la lista di categorie dal servizio menudata.service.js
     categories.categoriesList = categoriesList;
   }
-
-
-
 
 }());

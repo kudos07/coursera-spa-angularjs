@@ -7,8 +7,5 @@
   <li class="active">{{itemsList.catName}}</li>
 </ol>
 
-<ul>
-  <li ng-repeat="item in itemsList.items">
-    <p><strong>{{item.name}}:</strong> {{item.description}}</p>
-  </li>
-</ul>
+
+<items items="itemsList.items"></items>
