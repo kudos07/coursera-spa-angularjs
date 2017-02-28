@@ -32,10 +32,9 @@
         method: 'GET',
         url: 'https://davids-restaurant.herokuapp.com/menu_items.json?category=',
         params: {
-          categoryShortName: categoryShortName
+          catShortName: categoryShortName
         }
       }).then(function(result){
-        console.log(result.data.menu_items)
         return result.data.menu_items;
       })
 
