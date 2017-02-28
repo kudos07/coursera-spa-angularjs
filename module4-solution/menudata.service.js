@@ -30,9 +30,9 @@
 
       return $http({
         method: 'GET',
-        url: 'https://davids-restaurant.herokuapp.com/menu_items.json?category=',
+        url: 'https://davids-restaurant.herokuapp.com/menu_items.json',
         params: {
-          catShortName: categoryShortName
+          category: categoryShortName
         }
       }).then(function(result){
         return result.data.menu_items;
