@@ -31,6 +31,8 @@
         narrowItDown.loader = false;
         if(narrowItDown.found.length < 1) {
           narrowItDown.error = true;
+        } else {
+          narrowItDown.error = false;
         }
       }).catch(function (error) {
         console.log('Errore: ',error);
