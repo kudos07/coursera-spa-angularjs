@@ -43,7 +43,9 @@ function routeConfig ($stateProvider) {
     })
     .state('public.newsletter', {
       url: '/newsletter',
-      templateUrl: 'src/public/newsletter/newsletter.html'
+      templateUrl: 'src/public/newsletter/newsletter.html',
+      controller: 'NewsletterController',
+      controllerAs: 'newsletterCtrl'
     })
 }
 })();
