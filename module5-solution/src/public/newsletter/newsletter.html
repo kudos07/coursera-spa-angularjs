@@ -1,24 +1,33 @@
 <div class="page--newsletter">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-lg-offset-3">
+            <div class="col-md-6 col-md-offset-3">
 
                 <form class="form-horizontal" name="newsletterForm" novalidate>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-warning': newsletterForm.firstname.$error.required && newsletterForm.firstname.$touched}">
                         <label for="firstname" class="control-label">First name</label>
-                        <input type="text" class="form-control" id="firstname" ng-model="newsletter.user.firstname" placeholder="Jane">
+                        <span class="form-helper-text" ng-if="newsletterForm.firstname.$error.required && newsletterForm.firstname.$touched">Required field</span>
+                        <input type="text" class="form-control" name="firstname" id="firstname" ng-model="newsletter.user.firstname" placeholder="Jane" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-warning': newsletterForm.lastname.$error.required && newsletterForm.lastname.$touched}">
                         <label for="lastname" class="control-label">Last name</label>
-                        <input type="text" class="form-control" id="lastname" ng-model="newsletter.user.lastname" placeholder="Doe">
+                        <span class="form-helper-text" ng-if="newsletterForm.lastname.$error.required && newsletterForm.lastname.$touched">Required field</span>
+                        <input type="text" class="form-control" name="lastname" id="lastname" ng-model="newsletter.user.lastname" placeholder="Doe" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-warning': (newsletterForm.email.$invalid || newsletterForm.email.$error.required) && newsletterForm.email.$touched}">
                         <label for="email" class="control-label">Email</label>
-                        <input type="email" class="form-control" id="email" ng-model="newsletter.user.email" placeholder="Email">
+                        <span class="form-helper-text">
+                            <span ng-if="newsletterForm.email.$invalid && newsletterForm.email.$touched">This is not a valid email</span>
+                            <span ng-if="newsletterForm.email.$error.required && newsletterForm.email.$touched">Required field</span>
+                        </span>
+                        <input type="email" class="form-control" name="email" id="email" ng-model="newsletter.user.email" placeholder="Email" required>
                     </div>
                     <div class="form-group">
                         <label for="phonenumber" class="control-label">Phone number</label>
-                        <input type="text" class="form-control" id="phonenumber" ng-model="newsletter.user.phonenumber" placeholder="Email">
+                        <input type="text" class="form-control" name="phonenumber" id="phonenumber" ng-model="newsletter.user.phonenumber" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="menunumber" class="control-label">Menu number</label>
+                        <input type="text" class="form-control" name="menunumber" id="menunumber" ng-model="newsletter.user.menunumber" placeholder="Doe" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" ng-click="newsletter.submit()" ng-disabled="newsletterForm.$invalid" class="btn btn-default">Sign in</button>
@@ -26,6 +35,5 @@
                 </form>
 
             </div>
-        </div>
     </div>
 </div>

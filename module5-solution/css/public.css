@@ -183,3 +183,7 @@ h3.menu-item-title {
     width: 100%;
   }
 }
+
+.form-group {position: relative}
+.form-helper-text {  position: absolute;right:0;font-size: 11px;top: 13px;color:#8a6d3b;}
+.form-helper-text span {margin-left: 10px}
