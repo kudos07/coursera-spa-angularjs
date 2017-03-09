@@ -16,6 +16,9 @@
       serviceItemPromise.then(function (response) {
         $ctrl.itemFound = true;
 
+        // mi salvo le informazioni del prodotto selezionato dall'utente cosi me le ritrovo in automatico in my-info
+        $ctrl.newsletter.favoriteDish = response;
+
         // chiamo un servizio che mi vada a salvare le informazioni inserite cosi da poterle riutilizzare
         FormDataService.updateFormDataStorage($ctrl.newsletter);
 

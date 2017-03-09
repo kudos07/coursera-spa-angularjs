@@ -2,7 +2,39 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                {{myinfoCtrl.newsletterFormData}}
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>First name</th>
+                            <th>last name</th>
+                            <th>email</th>
+                            <th>Phone number</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{myinfoCtrl.newsletterFormData.user.firstname}}</td>
+                                <td>{{myinfoCtrl.newsletterFormData.user.lastname}}</td>
+                                <td>{{myinfoCtrl.newsletterFormData.user.email}}</td>
+                                <td>{{myinfoCtrl.newsletterFormData.user.phonenumber}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr />
+
+                <img
+                    class="img-responsive"
+                    width="250"
+                    height="150"
+                    ng-src="{{myinfoCtrl.basePath}}/images/{{myinfoCtrl.newsletterFormData.favoriteDish.short_name}}.jpg" alt="{{myinfoCtrl.newsletterFormData.favoriteDish.name}}">
+                <h3><strong>{{myinfoCtrl.newsletterFormData.favoriteDish.name}}</strong></h3>
+                <p>{{myinfoCtrl.newsletterFormData.favoriteDish.description}}</p>
+
+
+                <p>Not Signed Up Yet. <a ui-sref="public.newsletter">Sign up Now!</a></p>
             </div>
         </div>
     </div>
