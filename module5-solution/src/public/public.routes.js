@@ -47,5 +47,16 @@ function routeConfig ($stateProvider) {
       controller: 'NewsletterController',
       controllerAs: 'newsletterCtrl'
     })
+    .state('public.myinfo', {
+      url: '/myinfo',
+      templateUrl: 'src/public/my-info/my-info.html',
+      controller: 'MyinfoController',
+      controllerAs: 'myinfoCtrl',
+      resolve: {
+        myInfo: ['$stateParams','FormDataService', function ($stateParams, FormDataService) {
+          return FormDataService.getFormDataStorage();
+        }]
+      }
+    });
 }
 })();

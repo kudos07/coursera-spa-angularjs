@@ -4,23 +4,23 @@
   angular.module('public')
     .controller('NewsletterController', NewsletterController);
 
-  NewsletterController.$inject = ['MenuService'];
-  function NewsletterController (MenuService) {
+  NewsletterController.$inject = ['MenuService', 'FormDataService'];
+  function NewsletterController (MenuService, FormDataService) {
 
     var $ctrl = this;
     $ctrl.newsletter = {};
+    $ctrl.itemFound = null;
 
     $ctrl.submit = function () {
-      var userId = $ctrl.newsletter.user.menunumber;
-
-      var serviceItemPromise = MenuService.getMenuItemById(userId);
+      var serviceItemPromise = MenuService.getMenuItemById($ctrl.newsletter.menunumber);
       serviceItemPromise.then(function (response) {
-        if (userId === response.short_name) {
-          $ctrl.itemFound = true; // Prodotto trovato
-        }
+        $ctrl.itemFound = true;
+
+        // chiamo un servizio che mi vada a salvare le informazioni inserite cosi da poterle riutilizzare
+        FormDataService.updateFormDataStorage($ctrl.newsletter);
 
       }).catch(function (error) {
-        $ctrl.itemFound = false; // Prodotto NON trovato
+        $ctrl.itemFound = false;
       });
 
     }
