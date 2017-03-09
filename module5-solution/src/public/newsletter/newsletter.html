@@ -33,7 +33,7 @@
                         <label for="menunumber" class="control-label">Menu number</label>
                         <span class="form-helper-text">
                             <span ng-if="newsletterForm.menunumber.$error.required && newsletterForm.menunumber.$touched">Required field</span>
-                            <span ng-if="!itemFound">No such menu number exists</span>
+                            <span ng-if="newsletterForm.$submitted && itemFound === false">No such menu number exists</span>
                         </span>
                         <input type="text" class="form-control" name="menunumber" id="menunumber" ng-model="newsletterCtrl.newsletter.user.menunumber" placeholder="Doe" required>
                     </div>

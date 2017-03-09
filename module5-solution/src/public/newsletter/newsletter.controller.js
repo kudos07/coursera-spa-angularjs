@@ -15,7 +15,10 @@
 
       var serviceItemPromise = MenuService.getMenuItemById(userId);
       serviceItemPromise.then(function (response) {
-        $ctrl.itemFound = true; // Prodotto trovato
+        if (userId === response.short_name) {
+          $ctrl.itemFound = true; // Prodotto trovato
+        }
+
       }).catch(function (error) {
         $ctrl.itemFound = false; // Prodotto NON trovato
       });
