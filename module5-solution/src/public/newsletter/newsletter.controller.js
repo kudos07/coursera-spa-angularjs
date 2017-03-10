@@ -15,6 +15,7 @@
       var serviceItemPromise = MenuService.getMenuItemById($ctrl.newsletter.menunumber);
       serviceItemPromise.then(function (response) {
         $ctrl.itemFound = true;
+        $ctrl.newsletter.registered = true;
 
         // mi salvo le informazioni del prodotto selezionato dall'utente cosi me le ritrovo in automatico in my-info
         $ctrl.newsletter.favoriteDish = response;
@@ -24,6 +25,7 @@
 
       }).catch(function (error) {
         $ctrl.itemFound = false;
+        $ctrl.newsletter.registered = false;
       });
 
     }

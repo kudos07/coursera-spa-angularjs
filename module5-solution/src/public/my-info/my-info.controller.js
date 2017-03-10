@@ -14,6 +14,12 @@
     // dentro myInfo è gia contenuto il risultato del json del prodotto inserito dall'utente
     $ctrl.newsletterFormData = myInfo;
 
+    // controllo se la proprietà registered esiste nell'oggetto $ctrl.newsletterFormData
+    if($ctrl.newsletterFormData.hasOwnProperty("registered")){
+      $ctrl.showInfo = true;
+    } else {
+      $ctrl.showInfo = false;
+    }
 
 
 

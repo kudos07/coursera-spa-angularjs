@@ -2,8 +2,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
+                <div ng-if="myinfoCtrl.showInfo">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>First name</th>
@@ -21,20 +22,10 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
+                    <menu-item menu-item="myinfoCtrl.newsletterFormData.favoriteDish"></menu-item>
                 </div>
-
-                <hr />
-
-                <img
-                    class="img-responsive"
-                    width="250"
-                    height="150"
-                    ng-src="{{myinfoCtrl.basePath}}/images/{{myinfoCtrl.newsletterFormData.favoriteDish.short_name}}.jpg" alt="{{myinfoCtrl.newsletterFormData.favoriteDish.name}}">
-                <h3><strong>{{myinfoCtrl.newsletterFormData.favoriteDish.name}}</strong></h3>
-                <p>{{myinfoCtrl.newsletterFormData.favoriteDish.description}}</p>
-
-
-                <p>Not Signed Up Yet. <a ui-sref="public.newsletter">Sign up Now!</a></p>
+                <p ng-if="!myinfoCtrl.showInfo" class="text-center">Not Signed Up Yet. <a ui-sref="public.newsletter">Sign up Now!</a></p>
             </div>
         </div>
     </div>
